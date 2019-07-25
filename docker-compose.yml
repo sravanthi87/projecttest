@@ -1,11 +1,11 @@
-version: "2"
+version: "3"
 services:
   app:
     build: .
-    links:
-      - db
     ports:
-      - "5432:5432"
+      - "8080:8080"
+    volumes:
+      - .:/app
   db:
     image: mysql:5.7
     ports:
@@ -13,5 +13,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: certification_info
+      MYSQL_USER: newuser
+      MYSQL_PASSWORD: newpassword
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
